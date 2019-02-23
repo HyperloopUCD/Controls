@@ -1,0 +1,116 @@
+c/******************************************************************************
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+                   This is a Pseudi code for sensor state
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <conio.h>
+
+int sensorstate(double,double);
+void obtainvalue(double);
+
+int sensorcond, cond;
+double mean;
+double sd; 
+double value; 
+double arr[];
+int i;
+double val;
+double standardDeviation;
+
+double C_Las0,C_Las1;
+double SX_Las0,SX_Las1;
+double B_Pres0,B_Pres1,B_Pres2,B_Pres3,B_Pres4,B_Pres5,B_Pres6,B_Pres7,B_Pres8,B_Pres9;
+double B_Tem0,B_Tem1;
+double P_Pres0,P_Pres1,P_Pres2,P_Pres3,P_Pres4;
+double P_Tem0,P_Tem1,P_Tem2,P_Tem3,P_Tem4,P_Tem5,P_Tem6,P_Tem7,P_Tem8;
+
+int main()
+{
+    
+     obtainvalue(C_Las0);
+     obtainvalue(C_Las1);
+     obtainvalue(SX_Las0);
+     obtainvalue(SX_Las1);
+     obtainvalue(B_Pres0);
+     obtainvalue(B_Pres1);
+     obtainvalue(B_Pres2);
+     obtainvalue(B_Pres3);
+     obtainvalue(B_Pres4);
+     obtainvalue(B_Pres5);
+     obtainvalue(B_Pres6);
+     obtainvalue(B_Pres7);
+     obtainvalue(B_Pres8);
+     obtainvalue(B_Pres9);
+     obtainvalue(B_Tem0);
+     obtainvalue(B_Tem1);
+     obtainvalue(P_Pres0);
+     obtainvalue(P_Pres1);
+     obtainvalue(P_Pres2);
+     obtainvalue(P_Pres3);
+     obtainvalue(P_Pres4);
+     obtainvalue(P_Tem0);
+     obtainvalue(P_Tem1);
+     obtainvalue(P_Tem2);
+     obtainvalue(P_Tem3);
+     obtainvalue(P_Tem4);
+     obtainvalue(P_Tem5);
+     obtainvalue(P_Tem6);
+     obtainvalue(P_Tem7);
+     obtainvalue(P_Tem8);
+    
+    return 0;
+}
+
+int sensorstate(double value, double sd)
+{
+    if( value < 2*sd)
+    {
+        sensorcond = 0;
+        return sensorcond;
+    }
+    else if(value > 2*sd && value < 3*sd )
+    {
+        sensorcond =1;
+        return sensorcond;
+    }
+    else if(value >3*sd)
+    {
+        sensorcond =2;
+        return sensorcond;
+    }
+}   
+ void obtainvalue(double val)
+ { 
+     double sum =0;
+     for (i=0;i<10;i++)
+     {
+         arr[i]= val;  // i have just made a simple value but we can obtain the value from the adc
+     }
+     for (i=0;i<10;i++)
+     {
+         sum += arr[i];
+     }
+      mean = sum/10;
+    for(i=0; i<10; ++i)
+    {
+            standardDeviation += pow(arr[i] - mean, 2);
+    }
+      sd = sqrt(standardDeviation/10);
+     cond = sensorstate(mean ,sd); 
+     if(cond ==0)
+     {
+        printf( "normal");  // i have printed the statement , we can include the respective functionaity
+     }
+     else if (cond == 1)
+     {
+        printf( " Sick");
+     }
+     else 
+     {
+         printf("failure");
+     }
+ }
