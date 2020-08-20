@@ -1,0 +1,67 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+void coast(); 
+void Brake(); 
+void close_prop_vlve();
+
+int POD_ACCELERATION; 
+int POD_DISTANCE; 
+int COAST_TIMER;
+int value;
+int PROP_TNK_PRES;
+
+int main()
+{// This code is called from the acceleration
+   // if ( POD_ACCELERATION <= 0 && POD_DISTANCE >= 35000)
+    //{
+       coast();  
+    //}
+   
+    return 0;
+}
+
+void coast() 
+{
+    int value = 0;
+  close_prop_vlve();
+   if (PROP_TNK_PRES==0)
+   {
+       if(POD_DISTANCE >= 8000 )
+       {
+           Brake();
+       }
+   }
+   else 
+   {
+     void release_tnk_pressure();
+    while(1)
+    {
+     if(COAST_TIMER >=10 )
+     {
+         //Brake();
+         state = 5;
+         break;
+     }
+     else if (POD_DISTANCE >= 8000)
+     {
+         Brake();
+                break;
+     }
+     
+   }
+ }   
+  void close_prop_vlve()
+  {
+      int s1,s2,s3,s4 = 0;
+  }
+  void release_tnk_pressure()
+  {
+  }
